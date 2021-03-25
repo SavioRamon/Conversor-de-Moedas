@@ -17,10 +17,19 @@ export default ()=>{
 		let data = new Date();
 
 		let dia = data.getDate();
-		let diasPassados = dia - 14;
+		let diasPassados = dia - 7;
 		let mes = data.getMonth()+1;
 		let ano = data.getFullYear();
 
+		if(dia < 10) {
+			dia = `0${dia}`
+		}
+		if(mes < 10) {
+			mes = `0${mes}`
+		}
+		
+
+		console.log(dia, mes, ano);
 		const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=
 		${ano}-${mes}-${dia}&places=2`;
