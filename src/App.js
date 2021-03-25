@@ -11,6 +11,12 @@ export default ()=>{
 
 	const [moedaPrimaria, setMoedaPrimaria] = useState("USD");
 	const [moedaSecundaria, setMoedaSecundaria] = useState("BRL");
+	
+	const [moedaConvertida, setMoedaConvertida] = useState("");
+
+	const moedaConverte = (valor)=>{
+		setMoedaConvertida(valor);
+	}
 
 
 	const carregaDados = (moedaPrimaria, moedaSecundaria)=>{
@@ -65,9 +71,19 @@ export default ()=>{
 						<TipoMoeda item={dadosMoeda} trocaPrimaria={setMoedaPrimaria} trocaSecundaria={setMoedaSecundaria} carregaDados={carregaDados} />
 					}
 				</div>
+				
+				<div className="caixa--conversao">
+					{
+						moedaConvertida &&
+						<div className="moeda--convertida">
+							{`${moedaPrimaria} para ${moedaSecundaria} hoje: 
+							${moedaConvertida? moedaConvertida : "Indisponível"}`}
+						</div>
+					}
+				</div>
 
 				<div className="grafico">
-					<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} />
+					<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} moedaConverte={moedaConverte} />
 				</div>
 
 			</div>

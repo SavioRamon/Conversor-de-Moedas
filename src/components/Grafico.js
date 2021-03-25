@@ -3,16 +3,17 @@ import "./Grafico.css";
 
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line} from  "recharts";
 
-export default ({ dados, primeiraMoeda, segundaMoeda } )=>{
+export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
     
     const [data, setData] = useState("");
-    const [moedaConvertida, setMoedaConvertida] = useState("");
 
     const carregaData = ()=>{
-        let totMoeda = [];
+        const totMoeda = [];
         let moedaAtual = [];
+        const totValor = [];
 
-        let totValor = [];
+        let valorConversao = "";
+
         for(let item in dados) {
             for(let m in dados[item]) {
                 moedaAtual = m;
@@ -24,10 +25,14 @@ export default ({ dados, primeiraMoeda, segundaMoeda } )=>{
                 moeda: dados[item][moedaAtual]
             }
             totMoeda.push(valor);
-            setMoedaConvertida(valor["moeda"]);
+            valorConversao = valor["moeda"];
             
         }
         setData(totMoeda);
+        moedaConverte(valorConversao);
+
+
+
     }
 
     useEffect(()=>{
@@ -50,12 +55,6 @@ export default ({ dados, primeiraMoeda, segundaMoeda } )=>{
                     </ResponsiveContainer>
                 }
             </div>
-            {dados &&
-                <div className="moeda--convertida">
-                    {`${primeiraMoeda} para ${segundaMoeda} hoje: 
-                    ${moedaConvertida? moedaConvertida : "Indisponível"}`}
-                </div>
-            }
         
         </React.Fragment>
     )
