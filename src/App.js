@@ -38,7 +38,7 @@ export default ()=>{
 		console.log(dia, mes, ano);
 		const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=
-		${ano}-${mes}-${dia}&places=2`;
+		${ano}-${mes}-${dia}&places=2&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL`;
 		
 		const requisicaoParcial = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=

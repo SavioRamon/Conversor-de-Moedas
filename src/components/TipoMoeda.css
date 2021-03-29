@@ -43,30 +43,40 @@
     width: 40%;
     height: 180px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: left;
-    align-items: center;
+    align-items: left;
     overflow: auto;
     position: absolute;
     top: 30%;
+    box-shadow: 0px 0px 2px #000;
 
 }
 
 .moeda--primaria, .moeda--secundaria {
-    flex: 1;
-    margin: 4px;
-    padding: 2px;
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 1px;
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     background-color: #fff;
-    box-shadow: 0px 0px 5px #000;
+    border: 1px solid #000;
     cursor: pointer;
+    position: relative;
 }
 
-.moeda--primaria:hover, .botao--mostra--moedas:hover {
+.moeda--primaria span, .moeda--secundaria span {
+    color: #ff0000;
+    font-size: 15px;
+    position: absolute;
+    right: 0;
+    margin-right: 2px;
+}
+
+
+.moeda--primaria:hover, .moeda--secundaria:hover, .botao--mostra--moedas:hover {
     background-color: rgb(224, 224, 224);
 }
 
