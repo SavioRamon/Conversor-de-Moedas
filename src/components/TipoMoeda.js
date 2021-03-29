@@ -3,7 +3,6 @@ import "./TipoMoeda.css";
 
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 
 export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
 
@@ -68,11 +67,10 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
 
     return ( 
         <div className="caixa--moeda">
-            <h1 className="caixa--moeda--titulo">
-                Analise e Conversão de Moeda
-            </h1>
             
             <div className="caixa--moeda--primaria">
+                <input type="number" name="input--primeiro--valor" className="input--primeiro--valor" />
+                
                 <div className="botao--mostra--moedas" onClick={()=>{
                     setCaixaPrimariaAtivada(!caixaPrimariaAtivada);
                     setCaixaSecundariaAtivada(false);
@@ -105,8 +103,10 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     </div>
                 }
             </div>
-            <div className="figura--cedula"><LocalAtmIcon style={{fontSize: "50px"}}/></div>
+
             <div className={"caixa--moeda--secundaria"}>
+                <input type="number" name="input--segundo--valor" className="input--segundo--valor" />
+
                 <div className="botao--mostra--moedas" onClick={()=>{
                     setCaixaSecundariaAtivada(!caixaSecundariaAtivada);
                     setCaixaPrimariaAtivada(false);
