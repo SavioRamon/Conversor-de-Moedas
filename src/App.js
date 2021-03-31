@@ -19,12 +19,23 @@ export default ()=>{
 	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
 
 	const mudaValorInput = (valor)=>{
-		let novoValor = parseFloat(valor.target.value * moedaConvertida);
-		setValorPrimeiroInput(valor.target.value);
-		if(typeof(novoValor === "number") || novoValor >= 0) {
-			setValorSegundoInput(novoValor);
-		} 
+		let novoValor = "";
+
+		if (valor) {
+			let numero = parseFloat(valor.target.value);
+			setValorPrimeiroInput(valor.target.value);
+			if(typeof(numero) === "number" && numero >= 0) {
+				novoValor = numero * moedaConvertida;
+			}
+			
+		} else {
+			let numero = parseFloat(valorPrimeiroInput);
+			if(typeof(numero) === "number" && numero >= 0) {
+				novoValor = numero * moedaConvertida;
+			};
+		}
 		
+		setValorSegundoInput(novoValor);
 	}
 
 	const moedaConverte = (valor)=>{
@@ -71,7 +82,11 @@ export default ()=>{
 
 	useEffect(()=>{
 		carregaDados(moedaPrimaria, moedaSecundaria);
-	}, [])
+	}, []);
+
+	useEffect(()=>{
+		mudaValorInput("");
+	}, [moedaConvertida]);
 
 	return (
 		<div className="app">
@@ -82,7 +97,7 @@ export default ()=>{
 
 					<div className="moeda--conversao">
 						<input value={valorPrimeiroInput} onChange={(valor)=> mudaValorInput(valor)} type="number" name="input--primeiro--valor" className="input--primeiro--valor" />
-						<input value={valorSegundoInput? valorSegundoInput : moedaConvertida} name="input--segundo--valor" className="input--segundo--valor"  readOnly />
+						<input value={valorSegundoInput} name="input--segundo--valor" className="input--segundo--valor"  readOnly />
 					</div>
 
 					{dadosMoeda &&
