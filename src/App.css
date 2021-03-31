@@ -28,13 +28,34 @@
 .moedas--area {
     width: 100%;
     height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
-.caixa--conversao {
+.moeda--conversao {
+    margin-top: 28px;
+    position: absolute;
+
+}
+
+.input--primeiro--valor, .input--segundo--valor {
+    margin: 0px 20px 0px 20px;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.moeda--hoje {
     height: 10vh;
 }
 
-.moeda--convertida {
+.moeda--hoje--valor {
     padding: 10px;
     font-size: 30px;
     text-align: center;

@@ -69,7 +69,6 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
         <div className="caixa--moeda">
             
             <div className="caixa--moeda--primaria">
-                <input type="number" name="input--primeiro--valor" className="input--primeiro--valor" />
                 
                 <div className="botao--mostra--moedas" onClick={()=>{
                     setCaixaPrimariaAtivada(!caixaPrimariaAtivada);
@@ -105,7 +104,6 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
             </div>
 
             <div className={"caixa--moeda--secundaria"}>
-                <input type="number" name="input--segundo--valor" className="input--segundo--valor" />
 
                 <div className="botao--mostra--moedas" onClick={()=>{
                     setCaixaSecundariaAtivada(!caixaSecundariaAtivada);

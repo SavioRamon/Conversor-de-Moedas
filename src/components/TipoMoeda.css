@@ -16,29 +16,16 @@
     justify-content: center;
 }   
 
-.input--primeiro--valor, .input--segundo--valor {
-    width: 100px;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
-    box-shadow: 0 0 0 0;
-    outline: 0;
-    position: absolute;
-    top: -32px;
-}
-
 .botao--mostra--moedas {
-    z-index: 999;
     width: 100px;
     height: 30px;
     border-radius: 5px;
     font-weight: bold;
     font-size: 20px;
-    text-align: center;
     border: 1px solid #000;
     cursor: pointer;
     display: flex;
+    align-items: center;
 
 }
 

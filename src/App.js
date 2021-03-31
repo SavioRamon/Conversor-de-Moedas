@@ -15,6 +15,18 @@ export default ()=>{
 	
 	const [moedaConvertida, setMoedaConvertida] = useState("");
 
+	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
+	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
+
+	const mudaValorInput = (valor)=>{
+		let novoValor = parseFloat(valor.target.value * moedaConvertida);
+		setValorPrimeiroInput(valor.target.value);
+		if(typeof(novoValor === "number") || novoValor >= 0) {
+			setValorSegundoInput(novoValor);
+		} 
+		
+	}
+
 	const moedaConverte = (valor)=>{
 		setMoedaConvertida(valor);
 	}
@@ -35,8 +47,6 @@ export default ()=>{
 			mes = `0${mes}`
 		}
 		
-
-		console.log(dia, mes, ano);
 		const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=
 		${ano}-${mes}-${dia}&places=2&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL`;
@@ -69,19 +79,27 @@ export default ()=>{
 				<Cabecalho />
 
 				<div className="moedas--area">
+
+					<div className="moeda--conversao">
+						<input value={valorPrimeiroInput} onChange={(valor)=> mudaValorInput(valor)} type="number" name="input--primeiro--valor" className="input--primeiro--valor" />
+						<input value={valorSegundoInput? valorSegundoInput : moedaConvertida} name="input--segundo--valor" className="input--segundo--valor"  readOnly />
+					</div>
+
 					{dadosMoeda &&
 						<TipoMoeda item={dadosMoeda} trocaPrimaria={setMoedaPrimaria} trocaSecundaria={setMoedaSecundaria} carregaDados={carregaDados} />
 					}
+
 				</div>
 				
-				<div className="caixa--conversao">
+				<div className="moeda--hoje">
 					{
 						moedaConvertida &&
-						<div className="moeda--convertida">
+						<div className="moeda--hoje--valor">
 							{`${moedaPrimaria} para ${moedaSecundaria} hoje: 
 							${moedaConvertida? moedaConvertida : "Indisponível"}`}
 						</div>
 					}
+					
 				</div>
 
 				<div className="grafico">
