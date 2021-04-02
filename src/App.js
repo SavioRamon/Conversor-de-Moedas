@@ -18,7 +18,11 @@ export default ()=>{
 	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
 	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
 
+
 	const mudaValorInput = (valor)=>{
+
+		// A função irá analisar se ela foi chamada através da digitação no teclado ou por seleção de moedas, processando a informação e guardando na variável 'novoValor' 
+
 		let novoValor = "";
 
 		if (valor) {
@@ -34,9 +38,16 @@ export default ()=>{
 				novoValor = numero * moedaConvertida;
 			};
 		}
-		
-		setValorSegundoInput(novoValor);
+
+		// Essa parte da função irá analisar se 'novoValor' foi alterado ou continua uma variável vazia, mudando o valor do segundo input para um valor em float ou um campo vazio.
+
+		if(novoValor) {	
+			setValorSegundoInput(parseFloat(novoValor).toFixed(2));
+		} else {
+			setValorSegundoInput(novoValor);
+		}
 	}
+
 
 	const moedaConverte = (valor)=>{
 		setMoedaConvertida(valor);
@@ -60,11 +71,11 @@ export default ()=>{
 		
 		const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=
-		${ano}-${mes}-${dia}&places=2&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL`;
+		${ano}-${mes}-${dia}&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL`;
 		
 		const requisicaoParcial = `https://api.exchangerate.host/timeseries?start_date=
 		${ano}-${mes}-${diasPassados}&end_date=
-		${ano}-${mes}-${dia}&places=2&base=${moedaPrimaria}&symbols=${moedaSecundaria}`;
+		${ano}-${mes}-${dia}&base=${moedaPrimaria}&symbols=${moedaSecundaria}`;
 			
 		let requestURL = !dadosMoeda? requisicaoTodaMoeda : requisicaoParcial;
 
@@ -111,7 +122,7 @@ export default ()=>{
 						moedaConvertida &&
 						<div className="moeda--hoje--valor">
 							{`${moedaPrimaria} para ${moedaSecundaria} hoje: 
-							${moedaConvertida? moedaConvertida : "Indisponível"}`}
+							${moedaConvertida? parseFloat(moedaConvertida).toFixed(2) : "Indisponível"}`}
 						</div>
 					}
 					
