@@ -41,8 +41,10 @@ export default ()=>{
 
 		// Essa parte da função irá analisar se 'novoValor' foi alterado ou continua uma variável vazia, mudando o valor do segundo input para um valor em float ou um campo vazio.
 
+		
+	
 		if(novoValor) {	
-			setValorSegundoInput(parseFloat(novoValor).toFixed(2));
+			setValorSegundoInput(parseFloat(novoValor).toFixed(2).replace(".", ","));
 		} else {
 			setValorSegundoInput(novoValor);
 		}
@@ -107,8 +109,24 @@ export default ()=>{
 				<div className="moedas--area">
 
 					<div className="moeda--conversao">
-						<input value={valorPrimeiroInput} onChange={(valor)=> mudaValorInput(valor)} type="number" name="input--primeiro--valor" className="input--primeiro--valor" />
-						<input value={valorSegundoInput} name="input--segundo--valor" className="input--segundo--valor"  readOnly />
+						<input 
+						    value={valorPrimeiroInput} 
+							onChange={(valor)=> mudaValorInput(valor)} 
+							type="number" 
+							name="input--primeiro--valor" 
+							className="input--primeiro--valor" 
+							style={
+								valorSegundoInput || valorSegundoInput === 0? {boxShadow: "none"} : {boxShadow: "0px 0px 5px #ff0000"}
+						    }
+						/>
+
+						<input 
+						    value={valorSegundoInput} 
+							name="input--segundo--valor" 
+							className="input--segundo--valor"  
+							readOnly 
+						/>
+
 					</div>
 
 					{dadosMoeda &&
