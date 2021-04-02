@@ -139,8 +139,14 @@ export default ()=>{
 					{
 						moedaConvertida &&
 						<div className="moeda--hoje--valor">
-							{`${moedaPrimaria} para ${moedaSecundaria} hoje: 
-							${moedaConvertida? parseFloat(moedaConvertida).toFixed(2) : "Indisponível"}`}
+							<p>Hoje, 
+								<span style={{color: "#ff0000"}}>1</span> 
+								{moedaPrimaria} = 
+								<span style={{color: "#ff0000"}}>
+									{` ${moedaConvertida? parseFloat(moedaConvertida).toFixed(2).replace(".", ",") : "Indisponível"} `}
+								</span> 
+								{moedaSecundaria}
+							</p>
 						</div>
 					}
 					
