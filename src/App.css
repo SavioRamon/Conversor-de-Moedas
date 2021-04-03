@@ -15,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    font-size: clamp(1em, 2.5vw, 20px);
 }
 
 .caixa--principal {
@@ -25,13 +26,7 @@ body {
     justify-content: top;
     align-items: center;
     background-color: #fff;
-    overflow: hidden;
     position: relative;
-}
-
-.cabecalho {
-    height: 10vh;
-    width: 100%;
 }
 
 .moedas--area {
@@ -50,28 +45,29 @@ body {
 }
 
 .input--primeiro--valor, .input--segundo--valor {
-    margin: 0px 20px 0px 20px;
-    width: 100px;
+    margin: 0px 10px 0px 10px;
+    width: clamp(70px, 10vw, 10em);
     height: 30px;
     padding: 5px;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 0 0;
     outline: 0;
+    font-size: inherit;
 }
 
-.moeda--hoje {
-    height: 10vh;
+.input--segundo--valor {
+    text-align: center;
 }
 
 .moeda--hoje--valor {
     padding: 10px;
-    font-size: 30px;
     text-align: center;
     border: 1px solid #000;
     border-radius: 5px;
     position: relative;
-    top: 10vh;
+    top: 7vh;
+    font-size: clamp(0.5em, 5vw, 2em);
 }
 
 .grafico {
@@ -80,7 +76,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: top;
-    overflow: hidden;
     position: relative;
     top: 10vh;
 }
@@ -90,8 +85,26 @@ body {
         width: 100%;
     }
 }
-@media (max-height: 650px) {
+@media (max-height: 700px) {
     .caixa--principal {
-        height: 650px;
+        height: 1000px;
+    }
+
+    .grafico {
+        height: 350px;
+    }
+
+    .moedas--area {
+        height: 200px;
+    }
+}
+
+@media (max-height: 500px) {
+    .moedas--area {
+        height: 150px;
+    }
+
+    .moeda--conversao {
+        margin: 0
     }
 }

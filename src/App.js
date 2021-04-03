@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 
-import Cabecalho from "./components/Cabecalho";
 import TipoMoeda from "./components/TipoMoeda";
 import Grafico from "./components/Grafico";
 
@@ -105,10 +104,6 @@ export default ()=>{
 		<div className="app">
 			<div className="caixa--principal">
 				
-				<div className="cabecalho">
-					<Cabecalho />
-				</div>
-
 				<div className="moedas--area">
 
 					<div className="moeda--conversao">
