@@ -52,7 +52,7 @@ export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
                         <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
                             <CartesianGrid strokeDasharray="1 1" stroke="#000"/>
                             <XAxis dataKey ="titulo" style={{fontSize: "10px"}} />
-                            <YAxis domain={["auto", "auto"]} />
+                            <YAxis domain={["auto", "auto"]} style={{fontSize: "10px"}} />
                             <Tooltip />
                             <Legend iconSize={20} height={10}/>
                             <Line type="linear" name={segundaMoeda} dataKey={"moeda"} stroke="#ff0000"  />

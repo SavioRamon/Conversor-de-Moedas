@@ -1,25 +1,11 @@
 .caixa--grafico {
-    margin-right: 20px;
-    width: 50%;
+    width: 70%;
     height: 100%;
-    overflow: hidden;
     background-color: rgba(212, 212, 212, 0.1);
 }
 
-@media (max-width: 880px) {
-    .caixa--grafico {
-        width: 60%;
-    }
-}
-@media (max-width: 750px) {
+@media (max-width: 550px) {
     .caixa--grafico {
         width: 100%;
-        margin-right: 0px;
     }
 }
-@media (max-width: 450px) {
-    .caixa--grafico {
-        font-size: 20px;
-    }
-}
-
