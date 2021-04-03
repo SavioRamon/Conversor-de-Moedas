@@ -60,7 +60,7 @@ export default ()=>{
 		let data = new Date();
 
 		let dia = data.getDate();
-		let diasPassados = dia - 7;
+		let diasPassados = dia - 6;
 		let mes = data.getMonth()+1;
 		let ano = data.getFullYear();
 
@@ -104,7 +104,10 @@ export default ()=>{
 	return (
 		<div className="app">
 			<div className="caixa--principal">
-				<Cabecalho />
+				
+				<div className="cabecalho">
+					<Cabecalho />
+				</div>
 
 				<div className="moedas--area">
 
@@ -140,7 +143,7 @@ export default ()=>{
 						moedaConvertida &&
 						<div className="moeda--hoje--valor">
 							<p>Hoje, 
-								<span style={{color: "#ff0000"}}>1</span> 
+								<span style={{color: "#ff0000"}}> 1 </span> 
 								{moedaPrimaria} = 
 								<span style={{color: "#ff0000"}}>
 									{` ${moedaConvertida? parseFloat(moedaConvertida).toFixed(2).replace(".", ",") : "Indisponível"} `}

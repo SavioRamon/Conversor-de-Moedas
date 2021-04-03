@@ -1,6 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .caixa--cabecalho {
     height: 10vh;
     width: 100%;
-    background: blue;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 5px rgb(206, 206, 206);
+    z-index: 99;
 }

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./Grafico.css";
 
-import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line} from  "recharts";
+import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
+import { DataUsageTwoTone } from "@material-ui/icons";
 
 export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
     
@@ -19,18 +20,22 @@ export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
                 moedaAtual = m;
                 totValor.push(dados[item][m])
             }
+            
+            valorConversao = dados[item][moedaAtual];
+
+
             let valor = {
 
                 titulo: item.slice(5),
-                moeda: dados[item][moedaAtual]
+                moeda: parseFloat(dados[item][moedaAtual]).toFixed(2)
             }
             totMoeda.push(valor);
-            valorConversao = valor["moeda"];
+            console.log(typeof(valor.moeda))
             
         }
+        
         setData(totMoeda);
         moedaConverte(valorConversao);
-
 
 
     }
@@ -46,11 +51,11 @@ export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
                     <ResponsiveContainer>
                         <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
                             <CartesianGrid strokeDasharray="1 1" stroke="#000"/>
-                            <XAxis dataKey="titulo" style={{fontSize: "10px"}} />
+                            <XAxis dataKey ="titulo" style={{fontSize: "10px"}} />
                             <YAxis domain={["auto", "auto"]} />
                             <Tooltip />
-                            <Legend iconSize={20} />
-                            <Line type="linear" name={segundaMoeda} dataKey={"moeda"} stroke="#ff0000" />
+                            <Legend iconSize={20} height={10}/>
+                            <Line type="linear" name={segundaMoeda} dataKey={"moeda"} stroke="#ff0000"  />
                         </LineChart>
                     </ResponsiveContainer>
                 }

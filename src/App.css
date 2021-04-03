@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 200vh;
+}
+
 .app {
     width: 100%;
     display: flex;
@@ -23,6 +27,11 @@
     background-color: #fff;
     overflow: hidden;
     position: relative;
+}
+
+.cabecalho {
+    height: 10vh;
+    width: 100%;
 }
 
 .moedas--area {
