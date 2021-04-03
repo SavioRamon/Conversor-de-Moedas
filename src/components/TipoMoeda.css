@@ -10,28 +10,29 @@
 }
 
 .caixa--moeda--primaria, .caixa--moeda--secundaria {
-    margin: 0 20px 0 20px;
+    margin: 0 10px 0 10px;
     height: min-content;
     display: flex;
     justify-content: center;
 }   
 
 .botao--mostra--moedas {
-    width: 100px;
-    height: 30px;
+    padding: 15px 20px 15px 5px;
+    width: clamp(70px, 10vw, 10em);
+    height: 10px;
     border-radius: 5px;
     font-weight: bold;
-    font-size: 20px;
     border: 1px solid #000;
     cursor: pointer;
     display: flex;
     align-items: center;
-
+    justify-content: center
 }
 
 .moeda--escolha {
     z-index: 999;
-    width: 40%;
+    width: 50%;
+    max-width: 500px;
     height: 150px;
     display: flex;
     flex-direction: column;
@@ -39,7 +40,7 @@
     align-items: left;
     overflow: auto;
     position: absolute;
-    top: 20%;
+    top: 30%;
 }
 
 .moeda--primaria, .moeda--secundaria {
@@ -47,21 +48,23 @@
     margin-bottom: 2px;
     padding: 1px;
     border-radius: 5px;
-    font-size: 20px;
     font-weight: bold;
     text-align: left;
     background-color: #fff;
     border: 1px solid #000;
     cursor: pointer;
     position: relative;
+    font-size: clamp(0.8em, 2.5vw, 20px);
 }
 
 .moeda--primaria span, .moeda--secundaria span {
     color: #ff0000;
-    font-size: 15px;
     position: absolute;
     right: 0;
-    margin-right: 2px;
+    margin-right: 5px;
+
+    font-size: 10px;
+    
 }
 
 
@@ -69,31 +72,13 @@
     background-color: rgb(224, 224, 224);
 }
 
-@media (max-width: 500px) {
-    .caixa--moeda--primaria, .caixa--moeda--secundaria {
-        margin: 20px;
+@media (max-height: 500px) {
+    .caixa--moeda {
+        margin-top: 30px;
     }
-    .caixa--moeda--titulo {
-        font-size: 20px;
-    }
-
-    .botao--mostra--moedas {
-        padding: 5px;
-        transform: scale(0.8);
-    }
-
-    .figura--cedula {
-        margin-top: -60px;
-        transform: scale(0.5);
-    }
-
     .moeda--escolha {
-        top: 60px;
+        top: 25%;
+        height: 120px;
     }
 
-    .moeda--primaria, .moeda--secundaria {
-        margin: 1px;
-        padding: 1px;
-        font-size: 10px;
-    }
 }

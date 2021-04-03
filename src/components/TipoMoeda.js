@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./TipoMoeda.css";
 
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
 export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
 
     const [listaMoedas, setListaMoedas] = useState("");
@@ -74,7 +71,6 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     setCaixaPrimariaAtivada(!caixaPrimariaAtivada);
                     setCaixaSecundariaAtivada(false);
                 }}>
-                    {caixaPrimariaAtivada? <ArrowDropDownIcon /> : <ArrowRightIcon /> }
                     {moedaPrimariaEscolhida}
                 </div>
                 
@@ -109,7 +105,6 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     setCaixaSecundariaAtivada(!caixaSecundariaAtivada);
                     setCaixaPrimariaAtivada(false);
                 }}>
-                    {caixaSecundariaAtivada? <ArrowDropDownIcon /> : <ArrowRightIcon />}
                     {moedaSecundariaEscolhida}
                 </div>
 
