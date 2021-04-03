@@ -14,33 +14,28 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     font-size: clamp(1em, 2.5vw, 20px);
 }
 
 .caixa--principal {
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-    align-items: center;
     background-color: #fff;
     position: relative;
 }
 
 .moedas--area {
     width: 100%;
-    height: 30vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: end;
     position: relative;
 }
 
 .moeda--conversao {
     margin-top: 28px;
-    position: absolute;
 
 }
 
@@ -74,8 +69,9 @@ body {
     width: 100%;
     height: 40vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: top;
+    align-items: center;
     position: relative;
     top: 10vh;
 }
