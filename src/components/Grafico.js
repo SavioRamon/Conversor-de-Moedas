@@ -49,7 +49,7 @@ export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
             <div className="caixa--grafico">
                 {dados && 
                     <ResponsiveContainer>
-                        <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
+                        <LineChart data={data} margin={{ top: 0, right: 2, left: 0, bottom: 10 }}>
                             <CartesianGrid strokeDasharray="1 1" stroke="#000"/>
                             <XAxis dataKey ="titulo" style={{fontSize: "10px"}} />
                             <YAxis domain={["auto", "auto"]} style={{fontSize: "10px"}} />

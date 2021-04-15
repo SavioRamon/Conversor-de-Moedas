@@ -17,7 +17,7 @@
 
 .botao--mostra--moedas {
     padding: 15px 20px 15px 5px;
-    width: clamp(70px, 10vw, 10em);
+    width: clamp(80px, 20vw, 300px);
     height: 10px;
     border-radius: 5px;
     font-weight: bold;
@@ -30,8 +30,7 @@
 
 .moeda--escolha {
     z-index: 999;
-    width: 50%;
-    max-width: 500px;
+    width: clamp(100px, 20vw, 300px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -53,7 +52,7 @@
     border: 1px solid #000;
     cursor: pointer;
     position: relative;
-    font-size: clamp(0.8em, 2.5vw, 20px);
+    font-size: clamp(0.6em, 2vw, 20px);
 }
 
 .moeda--primaria span, .moeda--secundaria span {
@@ -61,23 +60,10 @@
     position: absolute;
     right: 0;
     margin-right: 5px;
-
-    font-size: 10px;
-    
+    font-size: clamp(0.6em, 2vw, 10px);
 }
 
 
 .moeda--primaria:hover, .moeda--secundaria:hover, .botao--mostra--moedas:hover {
     background-color: rgb(224, 224, 224);
-}
-
-@media (max-height: 500px) {
-    .caixa--moeda {
-        margin-top: 30px;
-    }
-    .moeda--escolha {
-        top: 25%;
-        height: 120px;
-    }
-
 }
