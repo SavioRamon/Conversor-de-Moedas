@@ -105,7 +105,9 @@ export default ()=>{
 			<div className="caixa--principal">
 				
 				<div className="moedas--area">
+					<div className="cifrao--imagem">
 
+					</div>
 					<div className="moeda--conversao">
 						<input 
 						    value={valorPrimeiroInput} 
