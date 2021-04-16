@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import "./Grafico.css";
 
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
-import { DataUsageTwoTone } from "@material-ui/icons";
 
 export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
     
