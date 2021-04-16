@@ -4,6 +4,8 @@ import "./App.css";
 import TipoMoeda from "./components/TipoMoeda";
 import Grafico from "./components/Grafico";
 
+import cifrao from "./imagens/cifrao.png";
+
 export default ()=>{
 
 	const [dadosMoeda, setDadosMoeda] = useState("");
@@ -105,8 +107,10 @@ export default ()=>{
 			<div className="caixa--principal">
 				
 				<div className="moedas--area">
-					<div className="cifrao--imagem">
-
+					<div className="cifrao">
+						<div className="cifrao--imagem">
+							<img src={cifrao} alt="imagem de um cifrão" />
+						</div>
 					</div>
 					<div className="moeda--conversao">
 						<input 

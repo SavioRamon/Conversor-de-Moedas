@@ -30,7 +30,7 @@
 
 .moeda--escolha {
     z-index: 999;
-    width: clamp(100px, 20vw, 300px);
+    width: clamp(200px, 30vw, 400px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -66,4 +66,38 @@
 
 .moeda--primaria:hover, .moeda--secundaria:hover, .botao--mostra--moedas:hover {
     background-color: rgb(224, 224, 224);
+}
+
+
+
+
+
+
+@media (max-height: 300px), (max-width: 400px) {
+    .caixa--moeda {
+        position: static;
+    }
+
+    .moeda--escolha {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        position: fixed;
+        background: #696969;
+    } 
+
+    .moeda--primaria, .moeda--secundaria {
+        width: 100%;
+        margin-bottom: 2px;
+        padding: 1px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #000;
+        cursor: pointer;
+        position: relative;
+        font-size: 20px;
+    }
 }
