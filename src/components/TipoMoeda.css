@@ -101,3 +101,12 @@
         font-size: 20px;
     }
 }
+
+@media (max-width: 300px) {
+    .botao--mostra--moedas {
+        height: 30px;
+        padding: 2px;
+        width: 60px;
+        padding: 15px 20px 15px 5px;
+    }
+}

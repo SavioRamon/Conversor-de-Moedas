@@ -95,3 +95,11 @@ body {
         justify-content: start;
     }
 }
+
+@media (max-width: 300px) {
+    .input--primeiro--valor, .input--segundo--valor {
+        height: 30px;
+        padding: 2px;
+        width: 60px;
+    }
+}
