@@ -9,7 +9,7 @@ body {
 }
 
 .app {
-    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,9 +19,10 @@ body {
 
 .caixa--principal {
     width: 100%;
-    height: clamp(700px, 100vh, 100vh);
+    height: clamp(100vh, 100vh, 100vh);
     background-color: #fff;
     position: relative;
+    margin-bottom: 100px;
 }
 
 
@@ -62,6 +63,17 @@ body {
     font-size: inherit;
 }
 
+.conteudo--inferior {
+    position: relative;
+    top: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1em, 2.5vw, 20px);
+}
 
 .moeda--hoje--valor {
     padding: 10px;
@@ -69,32 +81,35 @@ body {
     border: 1px solid #000;
     border-radius: 5px;
     position: relative;
-    top: 7vh;
     font-size: clamp(0.5em, 5vw, 2em);
+}
+
+.grafico--paragrafo {
+    margin-top: 50px;
 }
 
 .grafico {
     width: 100%;
-    height: 40vh;
+    height: clamp(200px, 40vh, 400px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 10vh;
 }
 
 
+@media (max-height: 550px) {
+    .cifrao--imagem {
+        height: 100px
+    }
 
-
-
-
-
-@media (max-height: 400px) {
     .moedas--area {
+        display: flex;
         justify-content: start;
     }
 }
+
 
 @media (max-width: 300px) {
     .input--primeiro--valor, .input--segundo--valor {

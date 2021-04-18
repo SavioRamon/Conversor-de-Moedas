@@ -139,27 +139,31 @@ export default ()=>{
 
 				</div>
 			</div>
-				
-			<div className="moeda--hoje">
-				{
-					moedaConvertida &&
-					<div className="moeda--hoje--valor">
-						<p>Hoje, 
-							<span style={{color: "#ff0000"}}> 1 </span> 
-							{moedaPrimaria} = 
-							<span style={{color: "#ff0000"}}>
-								{` ${moedaConvertida? parseFloat(moedaConvertida).toFixed(2).replace(".", ",") : "Indisponível"} `}
-							</span> 
-							{moedaSecundaria}
-						</p>
-					</div>
-				}
-					
-			</div>
 
-			<div className="grafico">
-				<p>Variação da moeda nos últimos 7 dias</p>
-				<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} moedaConverte={moedaConverte} />
+			<div className="conteudo--inferior">
+				
+				<div className="moeda--hoje">
+					{
+						moedaConvertida &&
+						<div className="moeda--hoje--valor">
+							<p>Hoje, 
+								<span style={{color: "#ff0000"}}> 1 </span> 
+								{moedaPrimaria} = 
+								<span style={{color: "#ff0000"}}>
+									{` ${moedaConvertida? parseFloat(moedaConvertida).toFixed(2).replace(".", ",") : "Indisponível"} `}
+								</span> 
+								{moedaSecundaria}
+							</p>
+						</div>
+					}
+						
+				</div>
+
+				<p className="grafico--paragrafo">Variação da moeda nos últimos 7 dias</p>
+				<div className="grafico">
+					
+					<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} moedaConverte={moedaConverte} />
+				</div>
 			</div>
 
 		</div>
