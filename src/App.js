@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 
+import Cabecalho from "./components/Grafico";
 import TipoMoeda from "./components/TipoMoeda";
 import Grafico from "./components/Grafico";
 
