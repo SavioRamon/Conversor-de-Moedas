@@ -105,7 +105,7 @@ export default ()=>{
 	return (
 		<div className="app">
 			<div className="caixa--principal">
-				
+
 				<div className="moedas--area">
 					<div className="cifrao">
 						<div className="cifrao--imagem">

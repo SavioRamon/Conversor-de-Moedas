@@ -81,6 +81,9 @@
 
 .grafico--paragrafo {
     margin-top: 50px;
+    font-size: clamp(0.6em, 5vw, 1em);
+    color: #c00000;
+
 }
 
 .grafico {
