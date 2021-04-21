@@ -32,8 +32,8 @@
 }
 
 .cifrao--imagem {
-    width: clamp(100px, 20vw, 200px);
-    height: 150px;
+    width: 150px;
+    height: 120px;
 } 
 
 .cifrao--imagem img {
@@ -98,9 +98,6 @@
 
 
 @media (max-height: 550px) {
-    .cifrao--imagem {
-        height: 100px
-    }
 
     .moedas--area {
         display: flex;
