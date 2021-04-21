@@ -4,6 +4,7 @@ import "./App.css";
 import Cabecalho from "./components/Cabecalho";
 import TipoMoeda from "./components/TipoMoeda";
 import Grafico from "./components/Grafico";
+import Rodape from "./components/Rodape";
 
 import cifrao from "./imagens/cifrao.png";
 
@@ -169,6 +170,8 @@ export default ()=>{
 					<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} moedaConverte={moedaConverte} />
 				</div>
 			</div>
+			
+			<Rodape />
 
 		</div>
 	)
