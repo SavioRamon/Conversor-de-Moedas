@@ -1,5 +1,5 @@
 .cabecalho--conteudo {
-    width: 95%;
+    width: 98%;
     height: clamp(50px, 10vh, 200px);
     color: rgb(172, 172, 172);
     border-bottom: 1px solid #000;
