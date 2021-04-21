@@ -29,7 +29,7 @@
 }
 
 .moeda--escolha {
-    z-index: 999;
+    z-index: 99;
     width: clamp(200px, 30vw, 400px);
     height: 100%;
     display: flex;
