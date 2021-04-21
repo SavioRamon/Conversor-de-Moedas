@@ -83,6 +83,7 @@
         left: 0;
         position: fixed;
         background: #696969;
+        z-index: 1000;
     } 
 
     .moeda--primaria, .moeda--secundaria {
