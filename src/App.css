@@ -105,6 +105,7 @@
     .moedas--area {
         display: flex;
         justify-content: start;
+        margin-top: 50px;
     }
 }
 

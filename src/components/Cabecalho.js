@@ -5,12 +5,8 @@ export default ()=>{
     return (
         <div className="cabecalho--conteudo">
             <h1 className="cabecalho--titulo">
-
+                Câmbio Moeda
             </h1>
-
-            <h2 className="cabecalho--subtitulo">
-                
-            </h2>
         </div>
     )
 }
