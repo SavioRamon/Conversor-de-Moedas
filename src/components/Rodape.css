@@ -1,0 +1,7 @@
+.rodape--conteudo {
+    height: clamp(70px, 30vh, 150px);
+    width: 100%;
+    background-color: rgb(107, 107, 107);
+    color: rgb(230, 230, 230);
+    margin-top: 300px;
+}
