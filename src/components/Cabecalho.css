@@ -4,7 +4,7 @@
     color: rgb(172, 172, 172);
     border-bottom: 1px solid #000;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
     position: fixed;
     top: 0;
@@ -13,6 +13,22 @@
 }
 
 .cabecalho--titulo {
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: clamp(25px, 5vw, 50px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.letra--o--cifrao {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.letra--o--cifrao img {
+    width: clamp(30px, 5vw, 50px);
+    margin: 0px -3px -10px -3px;
 }
