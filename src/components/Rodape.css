@@ -1,27 +1,29 @@
 .rodape--conteudo {
-    height: clamp(70px, 30vh, 300px);
+    height: auto;
     width: 100%;
-    background-color: rgb(77, 77, 77);
+    background-color: rgb(49, 49, 49);
     color: rgb(255, 255, 255);
     margin-top: 300px;
     display: flex;
     flex-direction: column;
-    font-size: clamp(15px, 2vw, 20px);
+    font-size: 18px;
 }
 
 .rodape--paragrafo {
-    margin-top: 5px;
+    margin-top: 20px ;
     margin-left: 15px;
+    text-align: center;
+    
 }
 
 .lista--contatos {
+    margin-top: 70px;
     margin-bottom: 5px;
     margin-left: 15px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    
 }
 
 .lista--contatos li a {

@@ -114,7 +114,7 @@ export default ()=>{
 				<div className="moedas--area">
 					<div className="cifrao">
 						<div className="cifrao--imagem">
-							<img src={cifrao} alt="imagem de um cifrão" />
+							<img src={cifrao} alt="imagem de um saco de dinheiro amarelo" />
 						</div>
 					</div>
 					<div className="moeda--conversao">

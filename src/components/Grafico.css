@@ -2,6 +2,7 @@
     width: 70%;
     height: 100%;
     background-color: rgba(212, 212, 212, 0.1);
+    min-width: 250px;
 }
 
 @media (max-width: 550px) {

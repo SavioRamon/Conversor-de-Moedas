@@ -32,7 +32,7 @@
 }
 
 .cifrao--imagem {
-    width: 150px;
+    width: 120px;
     height: 120px;
 } 
 
@@ -90,10 +90,11 @@
     width: 100%;
     height: clamp(200px, 40vh, 400px);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 
@@ -112,5 +113,12 @@
         height: 30px;
         padding: 2px;
         width: 60px;
+    }
+}
+
+@media (max-width: 250px) {
+    .grafico {
+        align-items: start;
+        justify-content: start;
     }
 }
