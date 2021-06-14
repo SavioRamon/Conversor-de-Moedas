@@ -10,6 +10,8 @@ As Moedas são adquiridas atravez de uma API que se encontra em https://exchange
   git clone https://github.com/SavioRamon/Conversor-de-Moedas.git
   
   cd Conversor-de-moedas
+  
+  npm install
 ```
 
 ### Agora rode o projeto
