@@ -1,7 +1,7 @@
 import React from 'react';
-import "./Cabecalho.css";
+import "./style.css";
 
-import cifrao from "../imagens/cifrao.png";
+import cifrao from "../../imagens/cifrao.png";
 
 export default ()=>{
     return (

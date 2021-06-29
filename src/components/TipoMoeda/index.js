@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import "./TipoMoeda.css";
+import "./style.css";
 
 export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
 

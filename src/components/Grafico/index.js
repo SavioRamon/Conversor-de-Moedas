@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import "./Grafico.css";
+import "./style.css";
 
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
 
