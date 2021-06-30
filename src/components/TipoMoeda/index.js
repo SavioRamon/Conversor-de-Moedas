@@ -1,15 +1,21 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 
+import { moedas } from "../../store/Conversor/Conversor.actions";
+import { useSelector, useDispatch } from "react-redux";
+
 export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
+
+    const moedasEscolha = useSelector((state)=>state.moedasSelecionadas);
+    const dispatch = useDispatch();
 
     const [listaMoedas, setListaMoedas] = useState("");
 
     const [caixaPrimariaAtivada, setCaixaPrimariaAtivada] = useState(false);
     const [caixaSecundariaAtivada, setCaixaSecundariaAtivada] = useState(false);
 
-    const [moedaPrimariaEscolhida, setMoedaPrimariaEscolhida] = useState("USD");
-    const [moedaSecundariaEscolhida, setMoedaSecundariaEscolhida] = useState("BRL");
+    const [moedaPrimaria, setMoedaPrimaria] = useState(moedasEscolha.moedaUm);
+    const [moedaSecundaria, setMoedaSecundaria] = useState(moedasEscolha.moedaDois);
 
 
     useEffect(()=>{
@@ -19,11 +25,15 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     totMoedas.push(moeda);
                 }
                 setListaMoedas(totMoedas);
-                carregaDados(moedaPrimariaEscolhida, moedaSecundariaEscolhida);
+                carregaDados(moedaPrimaria, moedaSecundaria);
                 break;
             }
 
     }, [])
+
+    useEffect(()=> dispatch(moedas(moedaPrimaria, moedaSecundaria)), [moedaPrimaria])
+
+    useEffect(()=> dispatch(moedas(moedaPrimaria, moedaSecundaria)), [moedaSecundaria])
 
     const listaMoedasInformacoes = listaMoedas && listaMoedas.map((item)=>{
         function moedaNome(abreviacao) {
@@ -71,7 +81,7 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     setCaixaPrimariaAtivada(!caixaPrimariaAtivada);
                     setCaixaSecundariaAtivada(false);
                 }}>
-                    {moedaPrimariaEscolhida}
+                    {moedaPrimaria}
                 </div>
                 
                 {caixaPrimariaAtivada &&
@@ -80,15 +90,15 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                             return (
                                 <div className="moeda--primaria" key={key} onClick={()=>{
                                     setCaixaPrimariaAtivada(false);
-                                    setMoedaPrimariaEscolhida(moeda.abreviacao);
+                                    setMoedaPrimaria(moeda.abreviacao);
                                     trocaPrimaria(moeda.abreviacao);
 
-                                    if(moeda.abreviacao === moedaSecundariaEscolhida) {
-                                        trocaSecundaria(moedaPrimariaEscolhida);
-                                        setMoedaSecundariaEscolhida(moedaPrimariaEscolhida);
-                                        carregaDados(moeda.abreviacao, moedaPrimariaEscolhida);
+                                    if(moeda.abreviacao === moedaSecundaria) {
+                                        trocaSecundaria(moedaPrimaria);
+                                        setMoedaSecundaria(moedaPrimaria);
+                                        carregaDados(moeda.abreviacao, moedaPrimaria);
                                     } else {
-                                        carregaDados(moeda.abreviacao, moedaSecundariaEscolhida)
+                                        carregaDados(moeda.abreviacao, moedaSecundaria)
                                     }
                                 }}>
                                     {moeda.nomeCompleto}<span>{moeda.abreviacao}</span>
@@ -105,7 +115,7 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                     setCaixaSecundariaAtivada(!caixaSecundariaAtivada);
                     setCaixaPrimariaAtivada(false);
                 }}>
-                    {moedaSecundariaEscolhida}
+                    {moedaSecundaria}
                 </div>
 
                 {caixaSecundariaAtivada &&
@@ -113,16 +123,16 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                         {listaMoedasInformacoes.map((moeda, key)=>{
                             return (
                                 <div className="moeda--secundaria" key={key} onClick={()=>{
-                                    setMoedaSecundariaEscolhida(moeda.abreviacao);
+                                    setMoedaSecundaria(moeda.abreviacao);
                                     trocaSecundaria(moeda.abreviacao);
                                     setCaixaSecundariaAtivada(false);
 
-                                    if(moeda.abreviacao === moedaPrimariaEscolhida) {
-                                        trocaPrimaria(moedaSecundariaEscolhida);
-                                        setMoedaPrimariaEscolhida(moedaSecundariaEscolhida);
-                                        carregaDados(moedaSecundariaEscolhida, moeda.abreviacao);
+                                    if(moeda.abreviacao === moedaPrimaria) {
+                                        trocaPrimaria(moedaSecundaria);
+                                        setMoedaPrimaria(moedaSecundaria);
+                                        carregaDados(moedaSecundaria, moeda.abreviacao);
                                     } else {
-                                        carregaDados(moedaPrimariaEscolhida, moeda.abreviacao);
+                                        carregaDados(moedaPrimaria, moeda.abreviacao);
                                     }
                                     
                                 }}>
