@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 
+import { useSelector } from "react-redux";
+
 import Cabecalho from "./components/Cabecalho";
 import TipoMoeda from "./components/TipoMoeda";
 import Grafico from "./components/Grafico";
@@ -12,9 +14,8 @@ export default ()=>{
 
 	const [dadosMoeda, setDadosMoeda] = useState("");
 	const [dadosGrafico, setDadosGrafico] = useState("");
-
-	const [moedaPrimaria, setMoedaPrimaria] = useState("USD");
-	const [moedaSecundaria, setMoedaSecundaria] = useState("BRL");
+	
+	const {moedaUm: moedaPrimaria, moedaDois: moedaSecundaria} = useSelector((state)=>state.moedasSelecionadas);
 	
 	const [moedaConvertida, setMoedaConvertida] = useState("");
 
@@ -139,7 +140,7 @@ export default ()=>{
 					</div>
 
 					{dadosMoeda &&
-						<TipoMoeda item={dadosMoeda} trocaPrimaria={setMoedaPrimaria} trocaSecundaria={setMoedaSecundaria} carregaDados={carregaDados} />
+						<TipoMoeda item={dadosMoeda} carregaDados={carregaDados} />
 					}
 
 				</div>
@@ -167,7 +168,7 @@ export default ()=>{
 				<p className="grafico--paragrafo">Variação da moeda nos últimos 7 dias</p>
 				<div className="grafico">
 					
-					<Grafico dados={dadosGrafico.rates} primeiraMoeda={moedaPrimaria} segundaMoeda={moedaSecundaria} moedaConverte={moedaConverte} />
+					<Grafico dados={dadosGrafico.rates} moedaConverte={moedaConverte} />
 				</div>
 			</div>
 			

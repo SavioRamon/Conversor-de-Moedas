@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 
+import { useSelector } from "react-redux";
+
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
 
-export default ({ dados, primeiraMoeda, segundaMoeda, moedaConverte } )=>{
+export default ({ dados, moedaConverte } )=>{
     
+    const segundaMoeda = useSelector((state)=>state.moedasSelecionadas.moedaDois);
+
     const [data, setData] = useState("");
 
     const carregaData = ()=>{

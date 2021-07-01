@@ -4,7 +4,7 @@ import "./style.css";
 import { moedas } from "../../store/Conversor/Conversor.actions";
 import { useSelector, useDispatch } from "react-redux";
 
-export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
+export default ( {item, carregaDados} )=>{
 
     const moedasEscolha = useSelector((state)=>state.moedasSelecionadas);
     const dispatch = useDispatch();
@@ -91,10 +91,8 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                                 <div className="moeda--primaria" key={key} onClick={()=>{
                                     setCaixaPrimariaAtivada(false);
                                     setMoedaPrimaria(moeda.abreviacao);
-                                    trocaPrimaria(moeda.abreviacao);
 
                                     if(moeda.abreviacao === moedaSecundaria) {
-                                        trocaSecundaria(moedaPrimaria);
                                         setMoedaSecundaria(moedaPrimaria);
                                         carregaDados(moeda.abreviacao, moedaPrimaria);
                                     } else {
@@ -124,11 +122,9 @@ export default ( {item, trocaPrimaria, trocaSecundaria, carregaDados} )=>{
                             return (
                                 <div className="moeda--secundaria" key={key} onClick={()=>{
                                     setMoedaSecundaria(moeda.abreviacao);
-                                    trocaSecundaria(moeda.abreviacao);
                                     setCaixaSecundariaAtivada(false);
 
                                     if(moeda.abreviacao === moedaPrimaria) {
-                                        trocaPrimaria(moedaSecundaria);
                                         setMoedaPrimaria(moedaSecundaria);
                                         carregaDados(moedaSecundaria, moeda.abreviacao);
                                     } else {
