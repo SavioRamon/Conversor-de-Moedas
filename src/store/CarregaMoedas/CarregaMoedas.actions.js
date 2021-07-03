@@ -1,7 +1,7 @@
 
 
 
-export function Api(moedaBase) {
+export function apiRequest(moedaBase) {
     return {
         type: "ASYNC_RETORNA_MOEDAS",
         payload: {
