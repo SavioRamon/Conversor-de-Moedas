@@ -5,52 +5,49 @@ import { useSelector } from "react-redux";
 
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
 
-export default ({ dados, moedaConverte } )=>{
+export default ({ moedaConverte } )=>{
     
+    const dadosApi = useSelector(state=>state.carregaMoedas.resposta);
     const segundaMoeda = useSelector((state)=>state.moedasSelecionadas.moedaDois);
 
     const [data, setData] = useState("");
 
     const carregaData = ()=>{
         const totMoeda = [];
-        let moedaAtual = [];
         const totValor = [];
 
         let valorConversao = "";
-
-        for(let item in dados) {
-            for(let m in dados[item]) {
-                moedaAtual = m;
-                totValor.push(dados[item][m])
+        if(dadosApi){
+            for(let item in dadosApi.rates) {
+                totValor.push(dadosApi.rates[item][segundaMoeda])
+                
+                
+                valorConversao = dadosApi.rates[item][segundaMoeda];
+    
+                let valor = {
+    
+                    titulo: item.slice(5),
+                    moeda: parseFloat(dadosApi.rates[item][segundaMoeda]).toFixed(2)
+                }
+                totMoeda.push(valor);
+                
             }
-            
-            valorConversao = dados[item][moedaAtual];
-
-
-            let valor = {
-
-                titulo: item.slice(5),
-                moeda: parseFloat(dados[item][moedaAtual]).toFixed(2)
-            }
-            totMoeda.push(valor);
-            console.log(typeof(valor.moeda))
-            
+            setData(totMoeda);
+            moedaConverte(valorConversao);
         }
-        
-        setData(totMoeda);
-        moedaConverte(valorConversao);
-
-
     }
 
     useEffect(()=>{
         carregaData();
-    }, [dados])
-
+    }, [dadosApi], [])
+    
+    useEffect(()=>{
+        carregaData();
+    }, [segundaMoeda], [])
     return (
         <React.Fragment>
             <div className="caixa--grafico">
-                {dados && 
+                {data && 
                     <ResponsiveContainer>
                         <LineChart data={data} margin={{ top: 0, right: 20, left: -30, bottom: 10 }}>
                             <CartesianGrid strokeDasharray="1 1" stroke="#000"/>
