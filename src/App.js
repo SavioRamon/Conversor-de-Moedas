@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { apiRequest } from "./store/CarregaMoedas/CarregaMoedas.actions";
 
 import Cabecalho from "./components/Cabecalho";
 import TipoMoeda from "./components/TipoMoeda";
@@ -13,12 +15,13 @@ import cifrao from "./imagens/cifrao.png";
 export default ()=>{
 
 	const [dadosMoeda, setDadosMoeda] = useState("");
-	const [dadosGrafico, setDadosGrafico] = useState("");
 	
+	const dadosApi = useSelector(state=>state.carregaMoedas);
 	const {moedaUm: moedaPrimaria, moedaDois: moedaSecundaria} = useSelector((state)=>state.moedasSelecionadas);
-	
-	const [moedaConvertida, setMoedaConvertida] = useState("");
+	const dispatch = useDispatch();
 
+	const [moedaConvertida, setMoedaConvertida] = useState("");
+	console.log(moedaConvertida);
 	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
 	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
 
@@ -58,47 +61,9 @@ export default ()=>{
 	const moedaConverte = (valor)=>{
 		setMoedaConvertida(valor);
 	}
-
-
-	const carregaDados = (moedaPrimaria, moedaSecundaria)=>{
-		let data = new Date();
-
-		let dia = data.getDate();
-		let diasPassados = dia - 6;
-		let mes = data.getMonth()+1;
-		let ano = data.getFullYear();
-
-		if(dia < 10) {
-			dia = `0${dia}`
-		}
-		if(mes < 10) {
-			mes = `0${mes}`
-		}
-		
-		const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
-		${ano}-${mes}-${diasPassados}&end_date=
-		${ano}-${mes}-${dia}&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL`;
-		
-		const requisicaoParcial = `https://api.exchangerate.host/timeseries?start_date=
-		${ano}-${mes}-${diasPassados}&end_date=
-		${ano}-${mes}-${dia}&base=${moedaPrimaria}&symbols=${moedaSecundaria}`;
-			
-		let requestURL = !dadosMoeda? requisicaoTodaMoeda : requisicaoParcial;
-
-		let request = new XMLHttpRequest();
-		request.open('GET', requestURL);
-		request.responseType = 'json';
-		request.send();
-				
-		request.onload = ()=>{
-			let response = request.response;
-			dadosMoeda && setDadosGrafico(response);
-			!dadosMoeda && setDadosMoeda(response);
-		};
-	}
-
+	
 	useEffect(()=>{
-		carregaDados(moedaPrimaria, moedaSecundaria);
+		dispatch(apiRequest(moedaPrimaria));
 	}, []);
 
 	useEffect(()=>{
@@ -139,9 +104,7 @@ export default ()=>{
 
 					</div>
 
-					{dadosMoeda &&
-						<TipoMoeda item={dadosMoeda} carregaDados={carregaDados} />
-					}
+					<TipoMoeda />
 
 				</div>
 			</div>
@@ -168,7 +131,7 @@ export default ()=>{
 				<p className="grafico--paragrafo">Variação da moeda nos últimos 7 dias</p>
 				<div className="grafico">
 					
-					<Grafico dados={dadosGrafico.rates} moedaConverte={moedaConverte} />
+					<Grafico moedaConverte={moedaConverte} />
 				</div>
 			</div>
 			

@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 
+import { apiRequest } from "../../store/CarregaMoedas/CarregaMoedas.actions";
 import { moedas } from "../../store/Conversor/Conversor.actions";
 import { useSelector, useDispatch } from "react-redux";
 
-export default ( {item, carregaDados} )=>{
+export default ()=>{
 
+    const dadosApi = useSelector(state=>state.carregaMoedas);
     const moedasEscolha = useSelector((state)=>state.moedasSelecionadas);
     const dispatch = useDispatch();
 
@@ -19,19 +21,28 @@ export default ( {item, carregaDados} )=>{
 
 
     useEffect(()=>{
-        for(let i in item.rates) {
+        if(dadosApi.resposta) {
             let totMoedas = [];
-                for(let moeda in item.rates[i]) {
+            
+            for(let data in dadosApi.resposta.rates) {
+                for(let moeda in dadosApi.resposta.rates[data]) {
                     totMoedas.push(moeda);
                 }
                 setListaMoedas(totMoedas);
-                carregaDados(moedaPrimaria, moedaSecundaria);
                 break;
             }
+    }
+        
+        
 
-    }, [])
+    }, [dadosApi],[])
 
-    useEffect(()=> dispatch(moedas(moedaPrimaria, moedaSecundaria)), [moedaPrimaria])
+    useEffect(()=> {
+
+        dispatch(moedas(moedaPrimaria, moedaSecundaria));
+        dispatch(apiRequest(moedaPrimaria));
+
+    }, [moedaPrimaria])
 
     useEffect(()=> dispatch(moedas(moedaPrimaria, moedaSecundaria)), [moedaSecundaria])
 
@@ -94,9 +105,6 @@ export default ( {item, carregaDados} )=>{
 
                                     if(moeda.abreviacao === moedaSecundaria) {
                                         setMoedaSecundaria(moedaPrimaria);
-                                        carregaDados(moeda.abreviacao, moedaPrimaria);
-                                    } else {
-                                        carregaDados(moeda.abreviacao, moedaSecundaria)
                                     }
                                 }}>
                                     {moeda.nomeCompleto}<span>{moeda.abreviacao}</span>
@@ -126,9 +134,6 @@ export default ( {item, carregaDados} )=>{
 
                                     if(moeda.abreviacao === moedaPrimaria) {
                                         setMoedaPrimaria(moedaSecundaria);
-                                        carregaDados(moedaSecundaria, moeda.abreviacao);
-                                    } else {
-                                        carregaDados(moedaPrimaria, moeda.abreviacao);
                                     }
                                     
                                 }}>
