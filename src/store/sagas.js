@@ -28,9 +28,7 @@ function getData() {
 function getApiMoedas(moedaBase) {
     const {dia, diasPassados, mes, ano} = getData();
 		
-    const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=
-    ${ano}-${mes}-${diasPassados}&end_date=
-    ${ano}-${mes}-${dia}&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL&base=${moedaBase}`;
+    const requisicaoTodaMoeda = `https://api.exchangerate.host/timeseries?start_date=${ano}-${mes}-${diasPassados}&end_date=${ano}-${mes}-${dia}&symbols=USD,BRL,EUR,GBP,JPY,AUD,CHF,CAD,RMB,ARS,TRL&base=${moedaBase}`;
     
     return new Promise((resolve, reject)=>{
         let request = new XMLHttpRequest();
