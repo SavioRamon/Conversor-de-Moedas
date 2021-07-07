@@ -13,15 +13,12 @@ import Rodape from "./components/Rodape";
 import cifrao from "./imagens/cifrao.png";
 
 export default ()=>{
-
-	const [dadosMoeda, setDadosMoeda] = useState("");
 	
 	const dadosApi = useSelector(state=>state.carregaMoedas);
 	const {moedaUm: moedaPrimaria, moedaDois: moedaSecundaria} = useSelector((state)=>state.moedasSelecionadas);
 	const dispatch = useDispatch();
 
 	const [moedaConvertida, setMoedaConvertida] = useState("");
-	console.log(moedaConvertida);
 	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
 	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
 
