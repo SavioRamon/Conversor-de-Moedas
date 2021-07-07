@@ -9,3 +9,14 @@ export  function moedas(moedaUm, moedaDois){
         }
     }
 }
+
+export function convertendo(valor, valorBase){
+
+    return {
+        type: "CONVERSAO",
+        payload: {
+            valor,
+            valorBase
+        }
+    }
+}
