@@ -22,19 +22,11 @@ export default ()=>{
 
     useEffect(()=>{
         if(dadosApi.resposta) {
-            let totMoedas = [];
             
-            for(let data in dadosApi.resposta.rates) {
-                for(let moeda in dadosApi.resposta.rates[data]) {
-                    totMoedas.push(moeda);
-                }
-                setListaMoedas(totMoedas);
-                break;
-            }
-    }
-        
-        
-
+            let totMoedas = Object.keys(dadosApi.resposta.rates);
+            setListaMoedas(Object.keys(dadosApi.resposta.rates[totMoedas[totMoedas.length - 1]]));
+            
+        }
     }, [dadosApi],[])
 
     useEffect(()=> {
@@ -44,7 +36,10 @@ export default ()=>{
 
     }, [moedaPrimaria])
 
-    useEffect(()=> dispatch(moedas(moedaPrimaria, moedaSecundaria)), [moedaSecundaria])
+    useEffect(()=> {
+        dispatch(moedas(moedaPrimaria, moedaSecundaria));
+        dispatch(apiRequest(moedaPrimaria))
+    }, [moedaSecundaria])
 
     const listaMoedasInformacoes = listaMoedas && listaMoedas.map((item)=>{
         function moedaNome(abreviacao) {
