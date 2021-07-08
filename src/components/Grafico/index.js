@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 import {ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from  "recharts";
 
-export default ({ moedaConverte } )=>{
+export default ()=>{
     
     const dadosApi = useSelector(state=>state.carregaMoedas.resposta);
     const segundaMoeda = useSelector((state)=>state.moedasSelecionadas.moedaDois);
@@ -16,13 +16,10 @@ export default ({ moedaConverte } )=>{
         const totMoeda = [];
         const totValor = [];
 
-        let valorConversao = "";
         if(dadosApi){
             for(let item in dadosApi.rates) {
                 totValor.push(dadosApi.rates[item][segundaMoeda])
                 
-                
-                valorConversao = dadosApi.rates[item][segundaMoeda];
     
                 let valor = {
     
@@ -33,7 +30,6 @@ export default ({ moedaConverte } )=>{
                 
             }
             setData(totMoeda);
-            moedaConverte(valorConversao);
         }
     }
 
