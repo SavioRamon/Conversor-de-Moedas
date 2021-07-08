@@ -2,11 +2,10 @@
 const convertendo = (valor, valorBase)=>{
     let conversao = "";
     let numero = parseFloat(valor);
-	if(typeof(numero) === "number" && numero >= 0) {
-		conversao = numero * valorBase;
-	}
-
-    conversao = parseFloat(conversao).toFixed(2).replace(".", ",");
+	
+    if(typeof(numero) === "number" && numero >= 0) {
+		conversao = parseFloat(numero * valorBase).toFixed(2).replace(".", ",");
+	} 
     
     return conversao;
     
@@ -24,11 +23,14 @@ export default function(state=stateInicial, action) {
     switch(action.type) {
 
         case "MOEDA":
+            return {
+                ...state,
+                moedaUm: action.payload.moedaUm,
+                moedaDois: action.payload.moedaDois
+            };
 
-            return action.payload;
         case "CONVERSAO":
             const resultado = convertendo(action.payload.valor, action.payload.valorBase);
-            
             return {
                 ...state,
                 resultado
