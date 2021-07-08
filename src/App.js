@@ -3,6 +3,7 @@ import "./App.css";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import { convertendo } from "./store/Conversor/Conversor.actions";
 import { apiRequest } from "./store/CarregaMoedas/CarregaMoedas.actions";
 
 import Cabecalho from "./components/Cabecalho";
@@ -15,57 +16,39 @@ import cifrao from "./imagens/cifrao.png";
 export default ()=>{
 	
 	const dadosApi = useSelector(state=>state.carregaMoedas);
-	const {moedaUm: moedaPrimaria, moedaDois: moedaSecundaria} = useSelector((state)=>state.moedasSelecionadas);
+	const {moedaUm: moedaPrimaria, moedaDois: moedaSecundaria, resultado} = useSelector((state)=>state.moedasSelecionadas);
 	const dispatch = useDispatch();
 
-	const [moedaConvertida, setMoedaConvertida] = useState("");
 	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
-	const [valorSegundoInput, setValorSegundoInput] = useState(moedaConvertida);
+	const [valorSegundoInput, setValorSegundoInput] = useState(resultado);
 
+	const dataHoje = ()=>{
+		let data = new Date();
 
-	const mudaValorInput = (valor)=>{
+		let dia = data.getDate();
+		let mes = data.getMonth()+1;
+		let ano = data.getFullYear();
 
-		// A função irá analisar se ela foi chamada através da digitação no teclado ou por seleção de moedas, processando a informação e guardando na variável 'novoValor' 
-
-		let novoValor = "";
-
-		if (valor) {
-			let numero = parseFloat(valor.target.value);
-			setValorPrimeiroInput(valor.target.value);
-			if(typeof(numero) === "number" && numero >= 0) {
-				novoValor = numero * moedaConvertida;
-			}
-			
-		} else {
-			let numero = parseFloat(valorPrimeiroInput);
-			if(typeof(numero) === "number" && numero >= 0) {
-				novoValor = numero * moedaConvertida;
-			};
+		if(dia < 10) {
+			dia = `0${dia}`
+		}	
+		if(mes < 10) {
+			mes = `0${mes}`
 		}
 
-		// Essa parte da função irá analisar se 'novoValor' foi alterado ou continua uma variável vazia, mudando o valor do segundo input para um valor em float ou um campo vazio.
-
-		
+		return `${ano}-${mes}-${dia}`;
+	}
 	
-		if(novoValor) {	
-			setValorSegundoInput(parseFloat(novoValor).toFixed(2).replace(".", ","));
-		} else {
-			setValorSegundoInput(novoValor);
-		}
-	}
-
-
-	const moedaConverte = (valor)=>{
-		setMoedaConvertida(valor);
-	}
 	
 	useEffect(()=>{
 		dispatch(apiRequest(moedaPrimaria));
 	}, []);
 
 	useEffect(()=>{
-		mudaValorInput("");
-	}, [moedaConvertida]);
+		if(dadosApi.resposta){
+			dispatch(convertendo(valorPrimeiroInput, dadosApi.resposta.rates[dataHoje()][moedaSecundaria]));
+		}
+	}, [dadosApi])
 
 	return (
 		<div className="app">
@@ -83,17 +66,20 @@ export default ()=>{
 					<div className="moeda--conversao">
 						<input 
 						    value={valorPrimeiroInput} 
-							onChange={(valor)=> mudaValorInput(valor)} 
+							onChange={(valor)=> {
+								setValorPrimeiroInput(valor.target.value);
+								dispatch(convertendo(valor.target.value, dadosApi.resposta.rates[dataHoje()][moedaSecundaria]));
+							}} 
 							type="number" 
 							name="input--primeiro--valor" 
 							className="input--primeiro--valor" 
 							style={
-								valorSegundoInput || valorSegundoInput === 0? {boxShadow: "none"} : {boxShadow: "0px 0px 5px #ff0000"}
+								typeof parseFloat(valorPrimeiroInput) === "number" && valorPrimeiroInput >= 0? {boxShadow: "none"} : {boxShadow: "0px 0px 5px #ff0000"}
 						    }
 						/>
 
 						<input 
-						    value={valorSegundoInput} 
+						    value={resultado} 
 							name="input--segundo--valor" 
 							className="input--segundo--valor"  
 							readOnly 
@@ -110,15 +96,11 @@ export default ()=>{
 				
 				<div className="moeda--hoje">
 					{
-						moedaConvertida &&
+						resultado &&
 						<div className="moeda--hoje--valor">
 							<p>Hoje, 
 								<span style={{color: "#ff0000"}}> 1 </span> 
-								{moedaPrimaria} = 
-								<span style={{color: "#ff0000"}}>
-									{` ${moedaConvertida? parseFloat(moedaConvertida).toFixed(2).replace(".", ",") : "Indisponível"} `}
-								</span> 
-								{moedaSecundaria}
+								{moedaPrimaria} = {resultado} {moedaSecundaria}
 							</p>
 						</div>
 					}
@@ -128,7 +110,7 @@ export default ()=>{
 				<p className="grafico--paragrafo">Variação da moeda nos últimos 7 dias</p>
 				<div className="grafico">
 					
-					<Grafico moedaConverte={moedaConverte} />
+					<Grafico />
 				</div>
 			</div>
 			
