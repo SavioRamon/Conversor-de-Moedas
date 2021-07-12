@@ -14,7 +14,7 @@ const convertendo = (valor, valorBase)=>{
 const stateInicial = {
     moedaUm: "USD",
     moedaDois: "BRL",
-    resultado: ""
+    resultado: "1"
 }
 
 
