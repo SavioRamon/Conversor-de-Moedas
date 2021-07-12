@@ -1,6 +1,9 @@
 # Conversor de Moedas
 
-Projeto que fiz por conta própria. Trata-se de um conversor de moedas feito em react que possui um gráfico com a variação da moeda nos ultimos 7 dias.
+## Sobre o projeto
+Conversor de moedas feito em react que possui um gráfico com a variação da moeda nos ultimos 7 dias.
+
+Eu refatorei o projeto utilizando redux e redux saga.
 
 As Moedas são adquiridas atravez de uma API que se encontra em https://exchangerate.host/#/
 
@@ -20,6 +23,4 @@ As Moedas são adquiridas atravez de uma API que se encontra em https://exchange
   npm start
 ```
 
-
-Projeto Terminado.
 
