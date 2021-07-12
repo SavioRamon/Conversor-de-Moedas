@@ -74,7 +74,7 @@ export default ()=>{
 							name="input--primeiro--valor" 
 							className="input--primeiro--valor" 
 							style={
-								typeof parseFloat(valorPrimeiroInput) === "number" && valorPrimeiroInput >= 0? {boxShadow: "none"} : {boxShadow: "0px 0px 5px #ff0000"}
+								resultado || resultado === 0? {boxShadow: "none"} : {boxShadow: "0px 0px 5px #ff0000"}
 						    }
 						/>
 
@@ -96,7 +96,7 @@ export default ()=>{
 				
 				<div className="moeda--hoje">
 					{
-						resultado &&
+						dadosApi.resposta &&
 						<div className="moeda--hoje--valor">
 							<p>Hoje, 
 								<span style={{color: "#ff0000"}}> 1 </span> 
