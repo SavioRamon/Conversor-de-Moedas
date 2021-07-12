@@ -20,9 +20,8 @@ export default ()=>{
 	const dispatch = useDispatch();
 
 	const [valorPrimeiroInput, setValorPrimeiroInput] = useState(1);
-	const [valorSegundoInput, setValorSegundoInput] = useState(resultado);
 
-	const dataHoje = ()=>{
+	const valorBase = ()=>{
 		let data = new Date();
 
 		let dia = data.getDate();
@@ -35,8 +34,9 @@ export default ()=>{
 		if(mes < 10) {
 			mes = `0${mes}`
 		}
-
-		return `${ano}-${mes}-${dia}`;
+		
+		return dadosApi.resposta.rates[`${ano}-${mes}-${dia}`][moedaSecundaria]
+		
 	}
 	
 	
@@ -46,7 +46,7 @@ export default ()=>{
 
 	useEffect(()=>{
 		if(dadosApi.resposta){
-			dispatch(convertendo(valorPrimeiroInput, dadosApi.resposta.rates[dataHoje()][moedaSecundaria]));
+			dispatch(convertendo(valorPrimeiroInput, valorBase()));
 		}
 	}, [dadosApi])
 
@@ -68,7 +68,7 @@ export default ()=>{
 						    value={valorPrimeiroInput} 
 							onChange={(valor)=> {
 								setValorPrimeiroInput(valor.target.value);
-								dispatch(convertendo(valor.target.value, dadosApi.resposta.rates[dataHoje()][moedaSecundaria]));
+								dispatch(convertendo(valor.target.value, valorBase()));
 							}} 
 							type="number" 
 							name="input--primeiro--valor" 
@@ -100,7 +100,7 @@ export default ()=>{
 						<div className="moeda--hoje--valor">
 							<p>Hoje, 
 								<span style={{color: "#ff0000"}}> 1 </span> 
-								{moedaPrimaria} = {resultado} {moedaSecundaria}
+								{moedaPrimaria} = {valorBase().toFixed(2).replace(".", ",")} {moedaSecundaria}
 							</p>
 						</div>
 					}

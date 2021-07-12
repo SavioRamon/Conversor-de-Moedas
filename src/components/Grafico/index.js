@@ -36,10 +36,6 @@ export default ()=>{
     useEffect(()=>{
         carregaData();
     }, [dadosApi], [])
-    
-    useEffect(()=>{
-        carregaData();
-    }, [segundaMoeda], [])
     return (
         <React.Fragment>
             <div className="caixa--grafico">
